@@ -1,0 +1,97 @@
+// USB HID usage code to PS/2 Set 2 scancode lookup table
+// Format: 9-bit value = {extended_flag, ps2_scancode[7:0]}
+// 256 entries indexed by HID usage code
+// Extended flag (bit 8) = 1 for keys that use E0 prefix in PS/2
+
+// 0x00-0x03: Reserved/Error
+000 000 000 000
+// 0x04-0x07: A B C D
+01C 032 021 023
+// 0x08-0x0B: E F G H
+024 02B 034 033
+// 0x0C-0x0F: I J K L
+043 03B 042 04B
+// 0x10-0x13: M N O P
+03A 031 044 04D
+// 0x14-0x17: Q R S T
+015 02D 01B 02C
+// 0x18-0x1B: U V W X
+03C 02A 01D 022
+// 0x1C-0x1F: Y Z 1 2
+035 01A 016 01E
+// 0x20-0x23: 3 4 5 6
+026 025 02E 036
+// 0x24-0x27: 7 8 9 0
+03D 03E 046 045
+// 0x28-0x2B: Enter Escape Backspace Tab
+05A 076 066 00D
+// 0x2C-0x2F: Space Minus Equals LeftBracket
+029 04E 055 054
+// 0x30-0x33: RightBracket Backslash NonUS# Semicolon
+05B 05D 05D 04C
+// 0x34-0x37: Apostrophe GraveAccent Comma Period
+052 00E 041 049
+// 0x38-0x3B: Slash CapsLock F1 F2
+04A 058 005 006
+// 0x3C-0x3F: F3 F4 F5 F6
+004 00C 003 00B
+// 0x40-0x43: F7 F8 F9 F10
+083 00A 001 009
+// 0x44-0x47: F11 F12 PrintScreen ScrollLock
+078 007 000 07E
+// 0x48-0x4B: Pause Insert Home PageUp
+000 170 16C 17D
+// 0x4C-0x4F: Delete End PageDown RightArrow
+171 169 17A 174
+// 0x50-0x53: LeftArrow DownArrow UpArrow NumLock
+16B 172 175 077
+// 0x54-0x57: KP/ KP* KP- KP+
+14A 07C 07B 079
+// 0x58-0x5B: KPEnter KP1 KP2 KP3
+15A 069 072 07A
+// 0x5C-0x5F: KP4 KP5 KP6 KP7
+06B 073 074 06C
+// 0x60-0x63: KP8 KP9 KP0 KP.
+075 07D 070 071
+// 0x64-0x67: NonUS\ Application Power KP=
+061 000 000 000
+// 0x68-0x6F: F13-F20 (unused)
+000 000 000 000 000 000 000 000
+// 0x70-0x77: F21-F24, rest unused
+000 000 000 000 000 000 000 000
+// 0x78-0x7F: unused
+000 000 000 000 000 000 000 000
+// 0x80-0x87: unused
+000 000 000 000 000 000 000 000
+// 0x88-0x8F: unused
+000 000 000 000 000 000 000 000
+// 0x90-0x97: unused
+000 000 000 000 000 000 000 000
+// 0x98-0x9F: unused
+000 000 000 000 000 000 000 000
+// 0xA0-0xA7: unused
+000 000 000 000 000 000 000 000
+// 0xA8-0xAF: unused
+000 000 000 000 000 000 000 000
+// 0xB0-0xB7: unused
+000 000 000 000 000 000 000 000
+// 0xB8-0xBF: unused
+000 000 000 000 000 000 000 000
+// 0xC0-0xC7: unused
+000 000 000 000 000 000 000 000
+// 0xC8-0xCF: unused
+000 000 000 000 000 000 000 000
+// 0xD0-0xD7: unused
+000 000 000 000 000 000 000 000
+// 0xD8-0xDF: unused
+000 000 000 000 000 000 000 000
+// 0xE0-0xE3: LCtrl LShift LAlt LGUI
+014 012 011 000
+// 0xE4-0xE7: RCtrl RShift RAlt RGUI
+114 059 111 000
+// 0xE8-0xEF: unused
+000 000 000 000 000 000 000 000
+// 0xF0-0xF7: unused
+000 000 000 000 000 000 000 000
+// 0xF8-0xFF: unused
+000 000 000 000 000 000 000 000
