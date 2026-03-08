@@ -122,7 +122,7 @@ module jupiter_ace (
     .C_report_length(8),         // 8-byte keyboard report
     .C_report_length_strict(0),  // accept any length > 0
     .C_setup_rom_file("usbh_setup_rom.mem"),
-    .C_setup_rom_len(16)
+    .C_setup_rom_len(32)
   ) usb_hid_inst (
     .clk(clk_usb),
     .usb_dif(usb_fpga_dp),

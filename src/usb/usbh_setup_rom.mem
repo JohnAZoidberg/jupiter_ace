@@ -1,11 +1,15 @@
 // minimal setup sequence is usually the most compatible
 // byte length of this sequence should be equal to
-// parameter "C_setup_rom_len" in file "usbh_host_hid.v" 
+// parameter "C_setup_rom_len" in file "usbh_host_hid.v"
 
 // set_address 1, Microsoft IntelliMouse needs address > 0 to activate reports
 00 05 01 00 00 00 00 00
 // set_configuration 1, most devices need configuration = 1 to activate reports
 00 09 01 00 00 00 00 00
+// set_protocol 0 (boot protocol) on interface 0 - required by many keyboards
+21 0B 00 00 00 00 00 00
+// set_idle 0 (indefinite) on interface 0 - report only on changes
+21 0A 00 00 00 00 00 00
 
 // transmission example
 // 00 09 01 00 00 00 00 00
