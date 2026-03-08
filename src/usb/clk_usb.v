@@ -1,25 +1,23 @@
-// 6 MHz USB low-speed clock PLL
-// Input: 25 MHz, Output: 6 MHz via CLKOS
+// 48 MHz USB clock PLL (supports both low-speed and full-speed)
+// Input: 25 MHz, Output: 48 MHz via CLKOS
 //
 // With FEEDBK_PATH="CLKOP":
-//   f_CLKOP = f_CLKI * CLKFB_DIV / CLKI_DIV = 25 * 5 / 1 = 125 MHz
-//   f_VCO   = f_CLKOP * CLKOP_DIV = 125 * 6 = 750 MHz
-//   f_CLKOS = f_VCO / CLKOS_DIV = 750 / 125 = 6.0 MHz
-//
-// Parameters match Lattice SCUBA-generated PLL from ulx3s-misc
+//   f_CLKOP = f_CLKI * CLKFB_DIV / CLKI_DIV = 25 * 24 / 5 = 120 MHz
+//   f_VCO   = f_CLKOP * CLKOP_DIV = 120 * 4 = 480 MHz
+//   f_CLKOS = f_VCO / CLKOS_DIV = 480 / 10 = 48.0 MHz
 
 module clk_usb
 (
     input  clk_in,   // 25 MHz
-    output clk_usb,  // 6 MHz
+    output clk_usb,  // 48 MHz
     output locked
 );
 
-wire clkop_fb;  // 125 MHz feedback signal (internal only)
+wire clkop_fb;  // 120 MHz feedback signal (internal only)
 
 (* FREQUENCY_PIN_CLKI="25" *)
-(* FREQUENCY_PIN_CLKOP="125" *)
-(* FREQUENCY_PIN_CLKOS="6" *)
+(* FREQUENCY_PIN_CLKOP="120" *)
+(* FREQUENCY_PIN_CLKOS="48" *)
 (* ICP_CURRENT="7" *) (* LPF_RESISTOR="16" *)
 EHXPLLL #(
     .PLLRST_ENA("DISABLED"),
@@ -30,19 +28,19 @@ EHXPLLL #(
     .OUTDIVIDER_MUXB("DIVB"),
     .OUTDIVIDER_MUXC("DIVC"),
     .OUTDIVIDER_MUXD("DIVD"),
-    .CLKI_DIV(1),
+    .CLKI_DIV(5),
     .CLKOP_ENABLE("ENABLED"),
-    .CLKOP_DIV(6),
-    .CLKOP_CPHASE(5),
+    .CLKOP_DIV(4),
+    .CLKOP_CPHASE(3),
     .CLKOP_FPHASE(0),
     .CLKOS_ENABLE("ENABLED"),
-    .CLKOS_DIV(125),
-    .CLKOS_CPHASE(124),
+    .CLKOS_DIV(10),
+    .CLKOS_CPHASE(9),
     .CLKOS_FPHASE(0),
     .CLKOS2_ENABLE("DISABLED"),
     .CLKOS3_ENABLE("DISABLED"),
     .FEEDBK_PATH("CLKOP"),
-    .CLKFB_DIV(5)
+    .CLKFB_DIV(24)
 ) pll_usb_i (
     .RST(1'b0),
     .STDBY(1'b0),

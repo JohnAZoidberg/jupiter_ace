@@ -40,7 +40,7 @@ module usbhid_to_ps2 (
     reg [3:0] scan_idx;        // index for scanning modifiers (0-7) or keys (0-5)
     reg       emit_release;    // 1 = releasing, 0 = pressing
     reg [7:0] emit_hid_code;   // HID code to emit
-    reg [2:0] hold_cnt;        // hold counter for CDC pulse stretching
+    reg [4:0] hold_cnt;        // hold counter for CDC pulse stretching
 
     // Wires for current report fields
     wire [7:0] cur_mods  = report_cur[7:0];
@@ -156,7 +156,7 @@ module usbhid_to_ps2 (
                 // Output the ps2_key event if lookup is valid
                 if (ps2_lookup[7:0] != 8'h00) begin
                     ps2_key <= {1'b1, emit_release, ps2_lookup};
-                    hold_cnt <= 3'd4;  // hold for 4 more clocks (total 5 @ 6MHz > 1 period @ 3.25MHz)
+                    hold_cnt <= 5'd19;  // hold for 19 more clocks (total 20 @ 48MHz = 417ns > 308ns @ 3.25MHz)
                     state <= S_EMIT_HOLD;
                 end else begin
                     // No valid mapping, skip
@@ -167,7 +167,8 @@ module usbhid_to_ps2 (
 
             S_EMIT_HOLD: begin
                 // Keep ps2_key[10] high for CDC reliability
-                if (hold_cnt != 3'd0) begin
+                ps2_key[10] <= 1'b1;
+                if (hold_cnt != 5'd0) begin
                     hold_cnt <= hold_cnt - 1;
                 end else begin
                     scan_idx <= scan_idx + 1;

@@ -129,7 +129,7 @@ module usb_tx_phy (
             sft_done   <= 1'b0;
             sft_done_r <= 1'b0;
         end else begin
-            if (bit_cnt[bit_cnt[15]] == (R_LineCtrl_i & R_long_i) && bit_cnt[2:0] == 3'b111)
+            if (bit_cnt[15] == (R_LineCtrl_i & R_long_i) && bit_cnt[2:0] == 3'b111)
                 sft_done <= ~stuff;
             else
                 sft_done <= 1'b0;

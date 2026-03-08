@@ -29,6 +29,7 @@ module usb_rx_phy
 );
 
     // Phase accumulator increment: (2^(PA_bits-1)) * bit_rate / clk_rate
+    // PA_inc=32 works for both 6MHz/1.5Mbps AND 48MHz/12Mbps (same ratio)
     localparam [C_PA_bits-1:0] C_PA_inc = ((1 << (C_PA_bits-1)) * C_clk_bit_hz) / C_clk_input_hz;
     // Phase accumulator compensation for edge re-sync
     localparam [C_PA_bits-2:0] C_PA_compensate = C_PA_inc[C_PA_bits-2:0] + C_PA_inc[C_PA_bits-2:0] + C_PA_inc[C_PA_bits-2:0];

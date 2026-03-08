@@ -64,7 +64,8 @@ output wire [7:0] led, // HID debugging
 output wire [15:0] rx_count, // rx response length
 output wire rx_done, // rx done
 output wire [C_report_length * 8 - 1:0] hid_report, // HID report (filtered with expected length)
-output wire hid_valid
+output wire hid_valid,
+output wire [7:0] response // SIE response PID (debug)
 );
 
 wire clk_usb;  // 48 or 60 MHz
@@ -122,6 +123,7 @@ wire rx_done_o;
 wire crc_err_o;
 wire timeout_o;
 wire [7:0] response_o;
+assign response = response_o;
 wire [15:0] rx_count_o;
 wire idle_o;
 reg R_set_address_found;

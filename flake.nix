@@ -43,7 +43,8 @@
                 ../src/usb/usbh_host_hid.v ../src/usb/usbh_sie.v \
                 ../src/usb/usbh_crc5.v ../src/usb/usbh_crc16.v \
                 ../src/usb/usb_phy.v ../src/usb/usb_rx_phy.v ../src/usb/usb_tx_phy.v \
-                ../src/usb/usbhid_to_ps2.v
+                ../src/usb/usbhid_to_ps2.v \
+                ../src/usb/uart_debug_tx.v
 
               # Place & route
               nextpnr-ecp5 \
